@@ -1,0 +1,56 @@
+let bagitemobj;
+onLoad();
+function onLoad(){
+displaybagitem();
+loadbagitemobj();
+}
+
+function loadbagitemobj(){
+console.log(bagitem)
+
+bagitemobj = bagitem.map(itemid=>{
+  for(let i=0;i< item.length;i++)
+  {
+    if(itemid == item[i].id)
+    {
+      return item[i];
+    }
+  }
+} );
+console.log(bagitemobj)
+}
+function displaybagitem(){
+  let containerEl=document.querySelector(".bag-items-container");
+  // containerEl.innerHTML=``
+  let innerHtml=''
+   bagitemobj.forEach( bagitem => {
+   innerHtml += ganitemHtml(bagitem);
+  });
+  containerEl.innerHTML=innerHtml;
+}
+function ganitemHtml(item){
+return `<div class="bag-item-container">
+            <div class="item-left-part">
+              <img class="bag-item-img" src="img/${item.itemimg}">
+            </div>
+            <div class="item-right-part">
+              <div class="company">${item.companyname}</div>
+              <div class="item-name">${item.itename}</div>
+              <div class="price-container">
+                <span class="current-price">Rs ${item.price.curprice}</span>
+                <span class="original-price">Rs ${item.price.origprice}</span>
+                <span class="discount-percentage">(${item.discount}% OFF)</span>
+              </div>
+              <div class="return-period">
+                <span class="return-period-days">14 days</span> return available
+              </div>
+              <div class="delivery-details">
+                Delivery by
+                <span class="delivery-details-days">10 Oct 2023</span>
+              </div>
+            </div>
+
+            <div class="remove-from-cart">X</div>
+          </div>`
+
+}
